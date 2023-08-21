@@ -1,0 +1,8 @@
+CREATE TABLE posts (
+    id VARCHAR(36) PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    seo_title VARCHAR(255) NOT NULL UNIQUE,
+    content TEXT NOT NULL,
+    publish_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    author_id VARCHAR(36)
+);

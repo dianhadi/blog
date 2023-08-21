@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    container_name: app.java.host
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - elastic_elastic
+    volumes:
+      - /Users/dianhadiana/Work/blog/files:/var/files
+  db:
+    container_name: db.java.host
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: admin_java
+      POSTGRES_PASSWORD: admin_java
+      POSTGRES_DB: post
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./schema:/docker-entrypoint-initdb.d
+    networks:
+      - elastic_elastic
+networks:
+  elastic_elastic:
+    external: true
