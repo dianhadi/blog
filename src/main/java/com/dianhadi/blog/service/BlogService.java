@@ -24,7 +24,6 @@ public class BlogService {
     public BlogResponse getUserBlog(String username) {
         User user = userConnector.getUserByUsername(username);
         List<Post> posts = postRepository.findByAuthor(user.getID());
-        System.out.println(posts.toString());
 
         BlogResponse blogResponse = new BlogResponse();
         blogResponse.setUser(user);

@@ -20,6 +20,9 @@ FROM openjdk:8-jre-alpine
 # Set the working directory inside the container
 WORKDIR /app
 
+# Copy the Elastic APM configuration file
+COPY src/main/resources/elasticapm.properties /app/
+
 # Copy the built JAR file from the build stage to the container
 COPY --from=build /app/build/libs/blog-0.0.1.jar app.jar
 
@@ -27,4 +30,4 @@ COPY --from=build /app/build/libs/blog-0.0.1.jar app.jar
 EXPOSE 8080
 
 # Run the Java application
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-javaagent:/var/files/elastic-apm-agent-1.41.1.jar", "-Delastic.apm.config_file=/app/elasticapm.properties", "-jar", "app.jar"]
