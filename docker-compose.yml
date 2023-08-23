@@ -24,6 +24,14 @@ services:
       - ./schema:/docker-entrypoint-initdb.d
     networks:
       - elastic_elastic
+  redis:
+    container_name: redis.java.host
+    image: redis:alpine
+    command: redis-server --requirepass admin_java
+    ports:
+      - 6380:6379
+    networks:
+      - elastic_elastic
 networks:
   elastic_elastic:
     external: true

@@ -32,4 +32,11 @@ public class BlogService {
         return blogResponse;
 
     }
+
+    public Post getPost(String seoTitle) {
+        Post post = postRepository.findBySeoTitle(seoTitle);
+
+        return post;
+
+    }
 }

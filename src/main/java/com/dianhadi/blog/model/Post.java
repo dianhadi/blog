@@ -9,11 +9,12 @@ import javax.persistence.Column;
 import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "posts")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Post {
+public class Post implements Serializable {
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;

@@ -31,6 +31,7 @@ dependencies {
 	implementation 'commons-codec:commons-codec:1.15'
 	implementation 'co.elastic.apm:apm-agent-api:1.24.0'
     implementation 'co.elastic.apm:apm-agent-attach:1.24.0'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dianhadi.blog.response.ApiResponse;
 import com.dianhadi.blog.response.BlogResponse;
 import com.dianhadi.blog.service.BlogService;
+import com.dianhadi.blog.model.Post;;
 
 @RestController
 @RequestMapping("/v1/blog")
@@ -20,8 +21,18 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping("/{username}")
-    public ApiResponse<BlogResponse> getUserBlog(@PathVariable String username) {
+    @GetMapping("/post/{title}")
+    public ApiResponse<Post> getPostByTitle(@PathVariable String title) {
+        Post post = blogService.getPost(title);
+
+        
+        ApiResponse<Post> apiResponse = new ApiResponse<>(200, "Success", post);
+
+        return apiResponse;
+    }
+
+    @GetMapping("/user/{username}")
+    public ApiResponse<BlogResponse> getUserByUsername(@PathVariable String username) {
         BlogResponse blogResponse = blogService.getUserBlog(username);
         
         ApiResponse<BlogResponse> apiResponse = new ApiResponse<>(200, "Success", blogResponse);
